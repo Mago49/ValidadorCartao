@@ -1,0 +1,59 @@
+function identificarBandeira(numero) {
+    numero = numero.replace(/\D/g, "");
+    const len = numero.length;
+    const prefixo1 = numero.slice(0, 1);
+    const prefixo2 = numero.slice(0, 2);
+    const prefixo3 = numero.slice(0, 3);
+    const prefixo4 = numero.slice(0, 4);
+    const intPrefixo2 = parseInt(prefixo2, 10);
+    const intPrefixo3 = parseInt(prefixo3, 10);
+    const intPrefixo4 = parseInt(prefixo4, 10);
+
+    // Mastercard: 16 dígitos, começa com 51/55 ou 2221-2720
+    if (
+        len === 16 &&
+        (prefixo2 === "51" || prefixo2 === "55" || (intPrefixo4 >= 2221 && intPrefixo4 <= 2720))
+    ) return "Bandeira: Mastercard";
+
+    // Voyager: 15 dígitos, começa com 51/55 ou 2221-2720
+    if (
+        len === 15 &&
+        (prefixo2 === "51" || prefixo2 === "55" || (intPrefixo4 >= 2221 && intPrefixo4 <= 2720))
+    ) return "Bandeira: Voyager";
+
+    // Visa: 16 dígitos, começa com 4
+    if (len === 16 && prefixo1 === "4") return "Bandeira: Visa";
+
+    // American Express: 15 dígitos, começa com 34 ou 37
+    if (len === 15 && (prefixo2 === "34" || prefixo2 === "37")) return "Bandeira: American Express";
+
+    // Diners Club: 14 dígitos, começa com 301, 305, 36 ou 38
+    if (
+        len === 14 &&
+        (prefixo3 === "301" || prefixo3 === "305" || prefixo2 === "36" || prefixo2 === "38")
+    ) return "Bandeira: Diners Club";
+
+    // Discover: 16 dígitos, começa com 6011, 65 ou 644-649
+    if (
+        len === 16 &&
+        (prefixo4 === "6011" || prefixo2 === "65" || (intPrefixo3 >= 644 && intPrefixo3 <= 649))
+    ) return "Bandeira: Discover";
+
+    // En Route: 15 dígitos, começa com 301, 305, 36 ou 38
+    if (
+        len === 15 &&
+        (prefixo3 === "301" || prefixo3 === "305" || prefixo2 === "36" || prefixo2 === "38")
+    ) return "Bandeira: En Route";
+
+    // JCB: 16 dígitos, começa com 35
+    if (len === 16 && prefixo2 === "35") return "Bandeira: JCB";
+
+    // HiperCard: 16 dígitos, começa com 38 ou 60
+    if (len === 16 && (prefixo2 === "38" || prefixo2 === "60")) return "Bandeira: HiperCard";
+
+    // Aura: 16 dígitos, começa com 50
+    if (len === 16 && prefixo2 === "50") return "Bandeira: Aura";
+
+    // Se não atender ao tamanho de nenhum cartão válido
+    return "Número de cartão inválido";
+}
