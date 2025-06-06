@@ -57,3 +57,10 @@ function identificarBandeira(numero) {
     // Se não atender ao tamanho de nenhum cartão válido
     return "Número de cartão inválido";
 }
+
+Quando reconhecer a bandeira:
+"Bandeira: <nome da bandeira>"
+Exemplo:"Bandeira: Visa"
+
+Quando o número não corresponde a nenhuma bandeira válida:
+"Número de cartão inválido"
